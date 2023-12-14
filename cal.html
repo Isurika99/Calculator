@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+
+    
+
+</head>
+<body>
+    <div>
+        <h1><b>Calculator</b></h1>
+
+        <form id="CalculatorForm">
+            <label for="number1">First Number:</label>
+            <input type="number" name="" id="number1" required>
+            <br>
+
+            <label for="number2">Second Number:</label>
+            <input type="number" name="" id="number2" required>
+            <br>
+            <table>
+                <tr>
+            <td class="td"><button type="button" onclick="add()">+</button></td>
+            <td class="td"><button type="button" onclick="subtract()">-</button></td>
+            <td class="td"><button type="button" onclick="multiply()">*</button></td>
+            <td class="td"><button type="button" onclick="divide()">/</button></td>
+                </tr>
+            </table>
+            <br>
+
+            <label for="answer">Answer:</label>
+            <input type="text" name="" id="answer" readonly>
+            <br>
+            <button class="clear" type="button"onclick="clearPage()">Clear</button>
+           
+        </form>
+    </div>
+
+    <script>
+        function add(){
+            calculate('add');
+        }
+
+        function subtract(){
+            calculate('subtract');
+        }
+        function multiply(){
+            calculate('multiply');
+        }
+        function divide(){
+            calculate('divide');
+        }
+
+        function calculate(operation){
+            var num1 = parseFloat(document.getElementById('number1').value);
+            var num2 = parseFloat(document.getElementById('number2').value);
+            
+            if(isNaN(num1) || isNaN(num2)){
+                alert("Please enter a valid number");
+                return;
+            }
+
+
+            
+            var answer;
+            switch(operation){
+
+                case 'add':
+                    answer = num1 + num2;
+                    break;
+                
+                case 'subtract':
+                    answer = num1 - num2;
+                    break;
+
+                case 'multiply':
+                    answer = num1 * num2;
+                    break;
+
+                case 'divide':
+                    if(num2!==0){
+                    answer = num1 / num2;
+                    }
+                    else{
+                        alert("Cannot divide by zero");
+                        return;
+                    }
+                    break;
+                    default:
+                    alert("Invalid operation");
+                    return;
+            }
+
+            document.getElementById('answer').value = answer;
+        }
+
+        function clearPage() {
+            document.getElementById('number1').value = '';
+            document.getElementById('number2').value = '';
+            document.getElementById('answer').value = '';
+        }
+    </script>
+
+    
+</body>
+</html>
+
+
+
+
